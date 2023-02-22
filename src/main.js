@@ -13,10 +13,11 @@ const conectHTMLElems = () => {
   viewElems.weatherSearchView = getDomElem("weatherSearchView");
   viewElems.weatherForecastView = getDomElem("weatherForecastView");
   viewElems.returnToSearchBtn = getDomElem("returnToSearchBtn");
-  viewElems.weatherIcon = getDomElem("weatherIcon");
   viewElems.weatherCurrentTemp = getDomElem("weatherCurrentTemp");
-  viewElems.weatherMaxTemp = getDomElem("weatherMaxTemp");
-  viewElems.weatherMinTemp = getDomElem("weatherMinTemp");
+  viewElems.weatherCity = getDomElem("weatherCity");
+  viewElems.fellsLike = getDomElem("fellsLike");
+  viewElems.wind = getDomElem("wind");
+  viewElems.cloud = getDomElem("cloud");
 };
 
 const setupListeners = () => {
@@ -38,7 +39,7 @@ const onEnterSubmit = (event) => {
     fadeInOut();
     viewElems.mainContainer.style.opacity = "0";
     let city = viewElems.searchInput.value;
-    getWeatherByCity(city).then((data) => console.log(data));
+    getWeatherByCity(city).then((data) => displayWeatherData(data));
     setTimeout(() => {
       switchView();
       fadeInOut();
@@ -48,7 +49,7 @@ const onEnterSubmit = (event) => {
 const onClickSubmit = () => {
   fadeInOut();
   let city = viewElems.searchInput.value;
-  getWeatherByCity(city).then((data) => console.log(data));
+  getWeatherByCity(city).then((data) => displayWeatherData(data));
   setTimeout(() => {
     switchView();
     fadeInOut();
@@ -82,6 +83,15 @@ const switchView = () => {
     viewElems.weatherSearchView.style.display = "flex";
     viewElems.weatherForecastView.style.display = "none";
   }
+};
+
+const displayWeatherData = (data) => {
+  console.log(data);
+  viewElems.weatherCity.innerText = data.location.name;
+  viewElems.weatherCurrentTemp.innerText = `Temperature: ${data.current.temp_c}°C`;
+  viewElems.fellsLike.innerText = `Sensed temperature: ${data.current.feelslike_c}°C`;
+  viewElems.wind.innerText = `Wind: ${data.current.wind_kph} kph`;
+  viewElems.cloud.innerText = `Cloudiness: ${data.current.cloud} %`;
 };
 
 document.addEventListener("DOMContentLoaded", initializeApp);

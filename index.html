@@ -21,23 +21,19 @@
             Check weather:
           </label>
           <input type="text" id="searchInput" />
-          <button id="searchButton">search</button>
+          <button id="searchButton" class="btn">search</button>
         </div>
 
         <div id="weatherForecastView" class="weather-info__forecast-view">
-          <button class="weather-info__btn-return" id="returnToSearchBtn">
-            return
-          </button>
-
-          <div class="weather-info__city">
-            <h1 id="weatherCity"></h1>
-            <img id="weatherIcon" />
-          </div>
-
           <div class="weather-info__temperatures">
+            <h1 id="weatherCity">Kato</h1>
             <h2 id="weatherCurrentTemp"></h2>
-            <p id="weatherMaxTemp"></p>
-            <p id="weatherMinTemp"></p>
+            <p id="fellsLike"></p>
+            <p id="wind"></p>
+            <p id="cloud"></p>
+            <button class="btn" id="returnToSearchBtn">
+              return
+            </button>
           </div>
         </div>
       </section>
