@@ -27,7 +27,13 @@ class weatherApp {
       this.fadeInOut();
       this.viewElems.mainContainer.style.opacity = "0";
       let city = this.viewElems.searchInput.value;
-      getWeatherByCity(city).then((data) => displayWeatherData(data));
+      getWeatherByCity(city)
+        .then((data) => {
+          this.displayWeatherData(data);
+        })
+        .catch(() => {
+          // obsluga bledu
+        });
       setTimeout(() => {
         this.switchView();
         this.fadeInOut();
